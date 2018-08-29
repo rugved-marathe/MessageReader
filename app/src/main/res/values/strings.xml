@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MessageReader</string>
+    <string name="hint_sender_number">Sender\'\s Number</string>
+    <string name="hint_message_body">Message text of incoming message appears here !</string>
+    <string name="btn_clear_field">Clear</string>
+    <string name="ok">OK</string>
+    <string name="info_permission_receive_sms">Receive SMS Permission is now Granted.</string>
+    <string name="info_permission_read_sms">Read SMS Permission is now Granted.</string>
+    <string name="permission_read_sms_rationale">App needs permission to read SMS</string>
+    <string name="permission_receive_sms_rationale">App needs permission to receive SMS</string>
+</resources>
