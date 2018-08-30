@@ -6,14 +6,17 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.afourtech.messagereader.MainActivity;
+import com.afourtech.messagereader.R;
 
 import java.util.HashMap;
+import java.util.Random;
 
 public class CheckIncomingSms extends BroadcastReceiver {
 
@@ -47,7 +50,7 @@ public class CheckIncomingSms extends BroadcastReceiver {
                 Toast.makeText(context, "" + phoneNumber, Toast.LENGTH_LONG).show();
                 Log.i(TAG, "In OnReceive() method's end");
                 inst.getMessageDetails(messageObject);
-                showNotification(context);
+                showNotification();
             }
         } catch (NullPointerException e) {
             Log.i("SmsReceiver : onReceive", " This method to call some function.");
@@ -55,15 +58,16 @@ public class CheckIncomingSms extends BroadcastReceiver {
         }
     }
 
-    private void showNotification(Context context) {
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "default")
-//                .setSmallIcon(R.drawable.notification_icon)
-                .setContentTitle("New Message")
-                .setContentText("New message received")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                // Set the intent that will fire when the user taps the notification
-//                .setContentIntent(pendingIntent)
+    private void showNotification() {
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(MainActivity.instance().getApplicationContext(), "default")
+                .setSmallIcon(R.mipmap.ic_launcher) // notification icon
+                .setContentTitle("New Message") // title for notification
+                .setContentText("You have received a message")// message for notification
                 .setAutoCancel(true);
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.instance());
+
+        Random notificationId = new Random();
+        notificationManager.notify(notificationId.nextInt(), mBuilder.build());
     }
 
     private SmsMessage getIncomingMessage(Object object, Bundle bundle) {
