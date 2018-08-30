@@ -17,7 +17,9 @@ import com.afourtech.messagereader.R;
 
 import java.util.HashMap;
 import java.util.Random;
-
+/**
+*
+*/
 public class CheckIncomingSms extends BroadcastReceiver {
 
     SmsManager smsManager = SmsManager.getDefault();
